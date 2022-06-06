@@ -1,4 +1,3 @@
-
 Class User.Test Extends %RegisteredObject [ ClassType = "", Not ProcedureBlock ]
 {
 
@@ -6,7 +5,7 @@ Class User.Test Extends %RegisteredObject [ ClassType = "", Not ProcedureBlock ]
 ClassMethod Select()
 {
 	s myquery = "SELECT Name,Age FROM Sample.Person "
-				_" WHERE Age NOT BETWEEN 20 AND 55"
+				_" WHERE Age BETWEEN 20 AND 35"
 				_" ORDER BY Age"
 	s tStatement = ##class(%SQL.Statement).%New()
 	s qStatus = tStatement.%Prepare(myquery)
@@ -94,7 +93,6 @@ ClassMethod test4()
 	w $d(^d(5)),!  //11 说明^d(5)还有子节点数据
 	
 	q $$$OK
-	
 }
 
 }
