@@ -102,7 +102,6 @@ ClassMethod test5()
     set ^b(1)=123
 	w $g(^b(1)),!   //123
 	
-	
 	w $g(c,234),!   //234
 
 	if $d(d)=0 do
