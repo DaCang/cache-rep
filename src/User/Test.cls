@@ -120,4 +120,27 @@ ClassMethod test5()
 	q $$$OK
 }
 
+ClassMethod test6()
+{
+	set a=2
+	w $s(a=1:"a=1",a=2:"a=2"),!    //a=2
+
+	if (a=1) {w "a=1",!}
+	elseif (a=2) {w "a=2",!}       //a=2
+
+	Try {
+		set b=3
+		w $s(b=1:"b=1",b=2:"b=2"),!    //
+	}
+	Catch ex {
+		w ex.SQLMessageString(),!
+	}
+	
+	set c=3
+	w $s(c=1:"c=1",c=2:"c=2",1:"no case select"),!    //no case select
+
+	set d=1
+	w $s(d=1:"d=1",d=1:"d is 1"),!    //d=1
+}
+
 }
