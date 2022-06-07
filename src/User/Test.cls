@@ -99,7 +99,7 @@ ClassMethod test5()
 {
 	w $g(a),!
 
-    set ^b(1)=123
+	set ^b(1)=123
 	w $g(^b(1)),!   //123
 	
 	w $g(c,234),!   //234
