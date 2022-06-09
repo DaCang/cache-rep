@@ -161,14 +161,44 @@ ClassMethod test6()
 	w $s(i:"非零数值0.123",1:"s"),!
 }
 
+/// w ##class(User.Test).test7()
 ClassMethod test7()
 {
-	w $c(1,2,3),!
-	set a="1"_$c(1)_"2"_$c(2)_"3"_$c(1,2,3)_"4"
-	w $li($lfs(a,$c(1)),1),!
-	
-	w $a($c(1,2,3),2),!
+	w $c(1),!       //SOH(start of headline)
+	w $c(65),!      //A
+	w $c(65,67),!   //AC
+	w $c(65536),!   //
+	w $c(-1),!  
+	w $c(65,-66,67),!   //AC
+	w $CHAR(960),!   //π
+	w $c(45),!       //-
+	w $a($c(45)),!   //45
 	q 0
+}
+
+/// w ##class(User.Test).test8("111")
+/// w ##class(User.Test).test8("sAdzbFsgh")   SADZBFSGH
+/// w ##class(User.Test).test8("sAdzbFsgh","l")   sadzbfsgh
+ClassMethod test8(Str As %String, Type As %String = "U")
+{
+	
+	q:$d(Str)=0
+	if ($MATCH(Str,"[a-zA-Z]+")=0){
+		w "必须是全英文字符",!
+		q ""
+	}
+	set ret=""
+	For i = 1:1:$l(Str) {
+		if ((Type="l")&&($a(Str,i)<90)){
+			set ret=ret_$c($a(Str,i)+32)
+		}elseif ((Type="U")&&($a(Str,i)>96)){
+			set ret=ret_$c($a(Str,i)-32)
+		}else{
+			set ret=ret_$c($a(Str,i))
+		}
+	}
+	
+	q ret
 }
 
 }
