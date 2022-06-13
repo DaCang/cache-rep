@@ -159,6 +159,8 @@ ClassMethod test6()
 
 	set i=0.123
 	w $s(i:"非零数值0.123",1:"s"),!
+
+	q 0
 }
 
 /// w ##class(User.Test).test7()
@@ -183,7 +185,7 @@ ClassMethod test8(Str As %String, Type As %String = "U")
 {
 	
 	q:$d(Str)=0
-	if ($MATCH(Str,"[a-zA-Z]+")=0){
+	if ('$MATCH(Str,"[a-zA-Z]+")){
 		w "必须是全英文字符",!
 		q ""
 	}
@@ -197,8 +199,34 @@ ClassMethod test8(Str As %String, Type As %String = "U")
 			set ret=ret_$c($a(Str,i))
 		}
 	}
-	
+	w ret,!
 	q ret
+}
+
+/// w ##class(User.Test).test9()
+ClassMethod test9()
+{
+	//字符串中是否包含子字符串
+	w $MATCH("aaaa","[a]+"),!
+	w $MATCH("ababab","[ab]+"),!
+	w $MATCH("ababab","[a-b]+"),!
+	w $MATCH("ct","ca*t"),!
+	
+	q 0
+}
+
+/// w ##class(User.Test).test10()
+ClassMethod test10()
+{
+	set ^a(1) ="123"
+	set ^a(1,1) ="234"
+	set ^a(1,2) ="345"
+	set index=""
+	f  s index=$o(^a(1,index)) q:index=""  do
+	.w index_" "_^a(1,index),!
+    
+
+	q 0
 }
 
 }
